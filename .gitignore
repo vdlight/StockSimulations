@@ -1,4 +1,5 @@
 Console/x64/
 Console/.vs/
-gui/obj
-gui/bin
+gui/.vs/
+gui/obj/
+gui/bin/
