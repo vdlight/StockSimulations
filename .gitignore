@@ -3,3 +3,7 @@ Console/.vs/
 gui/.vs/
 gui/obj/
 gui/bin/
+gui/x64/
+
+DynamicLinkLibrary/.vs/
+DynamicLinkLibrary/x64/
