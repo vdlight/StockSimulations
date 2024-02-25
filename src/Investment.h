@@ -32,7 +32,11 @@ private:
     int _currentDataPoint;
     strategy* _strategy;
 
+
 public:
+    int _startPrice;
+    int _lastPrice;
+
 
     investment()
     {
@@ -74,14 +78,14 @@ public:
 
     void investAccordingToStrategy(int buy_limit);
     int initialInvestment(int maxInvest);
-    void handleCurrentDataPoint(dataPoint point, int buy_limit);
-    void nextMonth(int buy_limit);
+    int handleCurrentDataPoint(dataPoint point, int buy_limit);
+    int nextMonth(int buy_limit);
 
     void print(dataPoint point);
     void printSummary();
-    void buy(int price, int buy_limit);
-    void sell(int price);
-    void sellAllButOne(int price);
+    int buy(int price, int buy_limit);
+    int sell(int price);
+    int sellAllButOne(int price);
 
     int getInvested() { return _invested; }
     int getReturned() { return _returned; }

@@ -4,6 +4,7 @@
 
 extern "C" __declspec(dllexport) int HelloWorld();
 
+extern "C" __declspec(dllexport) void InitSimulation();
 
 
 #endif

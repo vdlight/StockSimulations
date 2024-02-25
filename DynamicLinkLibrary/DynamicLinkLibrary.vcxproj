@@ -152,7 +152,6 @@
     <ClCompile Include="..\src\Portfolio.cpp" />
     <ClCompile Include="..\src\StockData.cpp" />
     <ClCompile Include="..\src\strategies.cpp" />
-    <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

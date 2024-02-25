@@ -57,7 +57,7 @@ const std::vector<dataPoint> nibe =
     { "2023-12-01", 72, 91 },
     { "2024-01-01", 58, 85 }
 };
-
+// 32
 
 
 const std::vector<dataPoint> investor =
@@ -97,7 +97,7 @@ const std::vector<dataPoint> investor =
     { "2023-12-01", 230, 212 },
     { "2024-01-01", 228, 213 }
 };
-
+// 34
 
 const std::vector<dataPoint> betterCollective =
 {
@@ -136,7 +136,7 @@ const std::vector<dataPoint> betterCollective =
     {"2024-01-01", 252, 235}
 };
 
-
+//33
 
 
 

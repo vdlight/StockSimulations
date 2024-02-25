@@ -4,6 +4,55 @@
 #include "DataCollection.h"
 
 
+/*
+Hanterar actions, om något ska göras i given status
+
+
+*/
+
+ACTION strategy_buyAt_Positive_signal::action(int price, int ma200, int balance) const
+{
+    static int old_price = 0;
+
+    if (balance > ADJ_LEVEL * (ADJ_PERCENTAGE + 1)) // 10% up
+    {
+        old_price = price;
+        return ACTION_SELL;
+    }
+    else if (balance < ADJ_LEVEL * (1 - ADJ_PERCENTAGE)) // 10% down
+    {
+
+        if (price > old_price)
+        {
+            return ACTION_BUY;
+        }
+    }
+    old_price = price;
+    return ACTION_NONE;
+}
+
+
+ACTION strategy_buyAt_10_MA_Limit_Positive_signal::action(int price, int ma200, int balance) const
+{
+    static int old_price = 0;
+
+    if (balance > ADJ_LEVEL * (ADJ_PERCENTAGE + 1)) // 10% up
+    {
+        old_price = price;
+        return ACTION_SELL;
+    }
+    else if (balance < ADJ_LEVEL * (1 - ADJ_PERCENTAGE)) // 10% down
+    {
+
+        if (price >= ma200 && price > old_price)  // >= MA AND current price better than last point
+        {
+            return ACTION_BUY;
+        }
+    }
+    old_price = price;
+    return ACTION_NONE;
+}
+
 ACTION strategy_buyAt10_MA_limit_Or_Positive_signal::action(int price, int ma200, int balance) const
 {
     static int old_price = 0;
@@ -62,5 +111,9 @@ ACTION strategy_buyAt10_MA_sell::action(int price, int ma200, int balance) const
 
 ACTION strategy_buyAndKeep::action(int price, int ma200, int balance) const
 {
+    if (balance < ADJ_LEVEL * (1 - ADJ_PERCENTAGE)) // 10% down
+    {
+        return ACTION_BUY;
+    }
     return ACTION_NONE;
 }
