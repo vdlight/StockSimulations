@@ -1,6 +1,9 @@
 #include "../src/Investment.h"
 #include "../src/Portfolio.h"
 
+#include <fstream>
+
+
 /*
 
 
@@ -28,42 +31,43 @@ Om jag lagt in 90 000 och värde på plånbok är 100 000, så är avkastning 10%
 
 int main()
 {
-    strategy_buyAt10_MA_limit strat;
+    strategy_buyAt_10_MA_Limit_Positive_signal strat;
 
-    investment invest("Nibe", nibe, &strat);
-    investment invest2("Investor", investor, &strat);
-    investment invest3("Better collective", betterCollective, &strat);
-    investment invest4("Nibe", nibe, &strat);
-    investment invest5("Investor", investor, &strat);
-    investment invest6("Better collective", betterCollective, &strat);
-    investment invest7("Nibe", nibe, &strat);
-    investment invest8("Investor", investor, &strat);
-    investment invest9("Better collective", betterCollective, &strat);
-    investment invest10("Nibe", nibe, &strat);
-    investment invest11("Investor", investor, &strat);
-    investment invest12("Better collective", betterCollective, &strat);
+    investment investPossibilities[] =
+    {
+        investment("Nibe", nibe, &strat),
+        investment("Investor", investor, &strat),
+        investment("Better collective", betterCollective, &strat),
+        investment("SBB", SBB, &strat),
+        investment("SAAB", SAAB, &strat),
+        investment("SEB", SEB, &strat),
+        investment("Latour", Latour, &strat),
+        investment("Volati", Volati, &strat),
+        investment("AtlasCopco", AtlasCopco, &strat),
+        investment("NewWave", NewWave, &strat),
+        investment("Alligo", Alligo, &strat),
+        investment("Volvo", Volvo, &strat),
+        investment("Castellum", Castellum, &strat),
+        investment("Tele2", Tele2, &strat),
+        investment ("Axfood", Axfood, &strat),
+    };
+
     
+    Portfolio bank;
+    int j = 0;
+    for (int i = 0; i < MAX_INVESTMENTS; i++ ) {
 
-    Portfolio bank({ 
-        &invest, 
-        &invest2, 
-        &invest3, 
-        &invest4,
-        &invest5, 
-        &invest6, 
-        &invest7, 
-        &invest8, 
-        &invest9, 
-        &invest10, 
-        &invest11,
-        &invest12,
-        }, 12, &strat);
+        bank.addInvestment(&investPossibilities[j]);
+        j++;
+        j %= 15;
+    }
+
 
     bank.setStartingBalance(100000);
 
     bank.startInvest();
 
-    for (int i = 0; i < 24; i++) {
+    for (int i = 0; i < 12*10; i++) {
 
         bank.nextMonth();
         bank.invest(1500);

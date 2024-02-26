@@ -3,7 +3,7 @@
 
 #include "Investment.h"
 
-const int MAX_INVESTMENTS = 15;
+const int MAX_INVESTMENTS = 100;
 const int MINIMUM_BUY = 500;
 
 
@@ -26,6 +26,7 @@ private:
     int _balance;
     int _invested;
     investment* _investments[MAX_INVESTMENTS] = { NULL };
+    int investmentCnt = 0;
 
 public:
     void setStartingBalance(int value) { _balance = value; _invested = value; }
@@ -35,14 +36,18 @@ public:
         _balance = 0;
         _invested = 0;
     };
-    Portfolio(std::initializer_list<investment*> investments, int size, strategy* s)
+    Portfolio(std::initializer_list<investment*> investments, int size)
     {
         _balance = 0;
         _invested = 0;
-        int cnt = 0;
+       
         for (auto i : investments) {
-            _investments[cnt++] = i;
+            _investments[investmentCnt++] = i;
         }
+    }
+
+    void addInvestment(investment * i) {
+        _investments[investmentCnt++] = i;
     }
 
     void investSeparate();

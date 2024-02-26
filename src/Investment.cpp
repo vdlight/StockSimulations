@@ -27,6 +27,7 @@ int investment::initialInvestment(int maxInvest)
     try {
         dataPoint* curr = &_data._dataPoints.at(_currentDataPoint++);
         _nrStocks = min(ADJ_LEVEL, maxInvest) / curr->_price;
+
         _startPrice = curr->_price;
         _currentValue = _nrStocks * curr->_price;
         std::cout << "Initiatal stocks " << _nrStocks << " current val " << _currentValue << std::endl;
@@ -62,8 +63,12 @@ int investment::nextMonth(int balance) {
         return handleCurrentDataPoint(*curr, balance);
     }
     catch (std::out_of_range) {
-        std::cout << "Loop done";
+        std::cout << "data range wrap" << std::endl;
         _currentDataPoint = 0;
+        dataPoint* curr = &_data._dataPoints.at(_currentDataPoint);
+        // sell and rebuy for free, to adjust wrap around
+        _nrStocks = _currentValue / curr->_price;
+        return _currentValue % curr->_price;
     }
     return 0;
 }

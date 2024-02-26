@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\DataRepository.cpp" />
     <ClCompile Include="..\src\Investment.cpp" />
     <ClCompile Include="..\src\Portfolio.cpp" />
     <ClCompile Include="..\src\StockData.cpp" />
@@ -135,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\DataCollection.h" />
+    <ClInclude Include="..\src\DataRepository.h" />
     <ClInclude Include="..\src\Investment.h" />
     <ClInclude Include="..\src\Portfolio.h" />
     <ClInclude Include="..\src\strategies.h" />
